@@ -68,7 +68,7 @@ const UserSchema: Schema<User> = new Schema({
 
 // agar phle se schema bana ho || or  agar first time schema ban rha ho
 
-const User =(mongoose.models.User as mongoose.Model<User>) ||
+export const UserModel =(mongoose.models.User as mongoose.Model<User>) ||
   mongoose.model<User>("User", UserSchema);
 
 // const Message = mongoose.model("Message", MessageSchema);
