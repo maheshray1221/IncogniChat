@@ -24,7 +24,21 @@ export async function POST(request: Request) {
     const existingUserByEmail = await UserModel.findOne({ email });
 
     if (existingUserByEmail) {
-      // todo true
+      if (existingUserByEmail.isVerified) {
+        return Response.json(
+          {
+            success: false,
+            message: "User already exist with this email",
+          },
+          { status: 400 },
+        );
+      } else {
+        const hasedPassword = await bcrypt.hash(password, 10);
+        existingUserByEmail.password = hasedPassword;
+        existingUserByEmail.verifyCode = verifyCode;
+        existingUserByEmail.verifyCodeExpiry = new Date(Date.now() + 3600000);
+        await existingUserByEmail.save();
+      }
     } else {
       // false user not exist
       const hasedPassword = await bcrypt.hash(password, 10);
