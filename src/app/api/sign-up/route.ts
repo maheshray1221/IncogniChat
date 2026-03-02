@@ -1,8 +1,8 @@
-import dbConnect from "@/src/lib/dbConection";
-import { UserModel } from "@/src/model/user.model";
+import dbConnect from "@/lib/dbConection";
+import { UserModel } from "@/model/user.model";
 import bcrypt from "bcryptjs";
-import { sendVerificationEmail } from "@/src/helper/sendVerificationEmail";
-import { ApiResponse } from "@/src/types/apiResponse";
+import { sendVerificationEmail } from "@/helper/sendVerificationEmail";
+import { ApiResponse } from "@/types/apiResponse";
 import { success } from "zod";
 
 export async function POST(request: Request) {
